@@ -23,7 +23,6 @@ export const CreateUserEmail = async (req: Request, res: Response) => {
   }
 };
 
-/** ================ GET TODO LIST    ======================*/
 
 export const GetAllUserEmail = async (req: Request, res: Response) => {
     const todo = await mailList.find({});
@@ -36,6 +35,40 @@ export const GetAllUserEmail = async (req: Request, res: Response) => {
       res.status(500).json({
         message: "Internal Server Error",
         route: "todo/get router",
+      });
+    }
+  };
+
+
+export const UpdateUserMail = async (req: Request, res: Response) => {
+    try {
+      const update = await mailList.findByIdAndUpdate(req.params.id, req.body);
+     return res.status(200).json({
+        message: "Successfully updated",
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "Internal Server Error",
+        route: "todo/update router",
+      });
+    }
+  };
+
+  export const DeleteUserMail = async (req: Request, res: Response) => {
+    try {
+      const deleteMe = await mailList.findByIdAndDelete(req.params.id);
+      if (!deleteMe) {
+        return res.status(404).json({
+          message: "This item has been deleted",
+        });
+      }
+      return res.status(200).json({
+        message: "You have successfully deleted your TODO item",
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "Internal Server Error",
+        route: "todo/delete router",
       });
     }
   };
