@@ -8,3 +8,8 @@ const connectMongoDB = async ()=>{
 }
 
 export default connectMongoDB
+
+export const GMAIL_USER = process.env.GMAIL_USER
+export const GMAIL_PASSWORD = process.env.GMAIL_PASSWORD
+export const FromAdminMail = process.env.FromAdminMail as string
+export const userSubject = process.env.userSubject as string

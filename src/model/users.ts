@@ -1,22 +1,28 @@
 import mongoose, { Schema } from "mongoose";
 
 interface EmailInstance {
-  email: string
+  email: string,
+  timestamps: string
+  name: string
 }
 
-const TodoModel = new Schema(
+const EmailModel = new Schema(
   {
     email: {
       type: String,
       required: true,
       unique: true
-    }
+    },
+    name: {
+      type: String,
+      required: true
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const EmailList = mongoose.model<EmailInstance>("Todo", TodoModel);
+const mailList = mongoose.model<EmailInstance>("Listing", EmailModel);
 
-export default EmailInstance;
+export default mailList;

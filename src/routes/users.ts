@@ -1,9 +1,8 @@
 import  express, {Request, Response} from 'express';
+import { CreateUserEmail } from '../controller/users';
 const router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.post('/', CreateUserEmail);
 
 export default router;

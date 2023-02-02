@@ -4,7 +4,7 @@ import { HttpError } from 'http-errors';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import indexRouter from './routes/index';
+// import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 import dotenv from 'dotenv'
 import connectMongoDB from "./config";
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
@@ -43,7 +43,7 @@ app.use(function(err: HttpError, req: Request, res: Response, next: NextFunction
   res.render('error');
 });
 
-const port = 8080;
+const port = 50000;
 
 app.listen(port, () => {
   console.log(`Server running on http://${port}`);
