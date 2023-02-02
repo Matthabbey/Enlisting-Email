@@ -2,7 +2,8 @@ import { FromAdminMail, GMAIL_PASSWORD, GMAIL_USER, userSubject } from "../confi
 import nodemailer from "nodemailer";
 
 const transport = nodemailer.createTransport({
-  service: "gmail",
+  host: "gmail",
+  port: 587,
   auth: {
     user: GMAIL_USER, // generated ethereal user
     pass: GMAIL_PASSWORD, // generated ethereal password

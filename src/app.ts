@@ -43,7 +43,7 @@ app.use(function(err: HttpError, req: Request, res: Response, next: NextFunction
   res.render('error');
 });
 
-const port = 50000;
+const port = 5000;
 
 app.listen(port, () => {
   console.log(`Server running on http://${port}`);
