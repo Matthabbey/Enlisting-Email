@@ -16,9 +16,9 @@ export const CreateUserEmail = async (req: Request, res: Response) => {
         Thank you again for your email. I look forward to hearing back from you soon.`;
     const { name, email } = req.body;
     const User = new mailList({ name, email });
-    await mailSent(FromAdminMail, email, userSubject, message)
-
-    const newMail = await User.save();
+    
+        await mailSent(FromAdminMail, email, userSubject, message)
+        const newMail = await User.save();
     return res.status(200).json({
       message: "You have successfully created your Email list",
       newMail,

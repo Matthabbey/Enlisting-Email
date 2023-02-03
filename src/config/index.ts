@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
+dotenv.config()
 const connectMongoDB = async ()=>{
   mongoose.set("strictQuery", false);
  const connect = await mongoose.connect(process.env.MONGO_DB_URL!)
@@ -11,5 +12,5 @@ export default connectMongoDB
 
 export const GMAIL_USER = process.env.GMAIL_USER
 export const GMAIL_PASSWORD = process.env.GMAIL_PASSWORD
-export const FromAdminMail = process.env.FromAdminMail as string
+export const FromAdminMail = process.env.fromAdminMail as string
 export const userSubject = process.env.userSubject as string

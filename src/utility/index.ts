@@ -1,9 +1,11 @@
 import { FromAdminMail, GMAIL_PASSWORD, GMAIL_USER, userSubject } from "../config/index";
 import nodemailer from "nodemailer";
+import google from 'googleapi';
+
+
 
 const transport = nodemailer.createTransport({
-  host: "gmail",
-  port: 587,
+  service: "gmail",
   auth: {
     user: GMAIL_USER, // generated ethereal user
     pass: GMAIL_PASSWORD, // generated ethereal password
@@ -12,6 +14,8 @@ const transport = nodemailer.createTransport({
     rejectUnauthorized: false,
   },
 });
+// console.log(GMAIL_USER, GMAIL_PASSWORD, FromAdminMail );
+
 
 export const mailSent = async (
   from: string, //'"Fred Foo 👻" <foo@example.com>', // sender address
@@ -31,3 +35,27 @@ export const mailSent = async (
     console.log(error);
   }
 };
+
+
+const writeDataToSheet = async (sheetId: any, sheetName: any, values: any) => {
+  // create a client
+  const client = await google.auth.getClient({
+    scopes: ['https://www.googleapis.com/auth/spreadsheets']
+  });
+
+  // access the sheets api
+  const sheets = google.sheets({version: 'v4', auth: client});
+
+  // write data to the specified sheet
+  const result = await sheets.spreadsheets.values.append({
+    spreadsheetId: sheetId,
+    range: sheetName,
+    valueInputOption: 'RAW',
+    insertDataOption: 'INSERT_ROWS',
+    resource: {
+      values: values
+    }
+  });
+
+  return result.data;
+}
